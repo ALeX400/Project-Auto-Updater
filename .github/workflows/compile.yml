@@ -32,5 +32,5 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add Updates.json Compiled/ || true
+          git add . || true
           git diff --cached --quiet || (git commit -m "Automated compilation update" && git push)
