@@ -8,7 +8,7 @@ on:
 
 jobs:
   compile:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest  # Schimbat de la ubuntu-latest la windows-latest
 
     steps:
       - name: Checkout Repository
@@ -22,20 +22,12 @@ jobs:
       - name: Install Dependencies
         run: pip install json5
 
-      - name: Install Required 32-bit Libraries
+      - name: Set Execute Permissions for AMXX Compiler (Windows)
         run: |
-          sudo dpkg --add-architecture i386
-          sudo apt-get update
-          sudo apt-get install -y lib32gcc-s1 libc6:i386
-
-      - name: Set Execute Permissions for AMXX Compiler
-        run: chmod +x Compiler/*/amxxpc || true
+          chmod +x Compiler/*/amxxpc.exe || echo "Skipping chmod on Windows"
 
       - name: Debug Compiler Files
-        run: find Compiler -type f
-
-      - name: Set LD_LIBRARY_PATH for AMXX Compiler
-        run: echo "export LD_LIBRARY_PATH=Compiler/190:Compiler/1100:\$LD_LIBRARY_PATH" >> $GITHUB_ENV
+        run: Get-ChildItem -Path Compiler -Recurse | Format-Table -AutoSize
 
       - name: Run Compilation Script
         run: python compile_amxx.py
@@ -44,5 +36,5 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add Updates.json Compiled/ || true
+          git add Updates.json Compiled/ || echo "No changes to commit"
           git diff --cached --quiet || (git commit -m "Automated compilation update" && git push)
