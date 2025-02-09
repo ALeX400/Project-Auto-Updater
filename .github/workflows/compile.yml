@@ -22,8 +22,11 @@ jobs:
       - name: Install Dependencies
         run: pip install json5
 
-      - name: Set Execute Permissions for AMXX Compiler
-        run: chmod +x Compiler/*/amxxpc
+      - name: Install 32-bit Libraries (Required for AMX Mod X Compiler)
+        run: sudo apt-get update && sudo apt-get install -y lib32gcc1 libc6-i386
+
+      - name: Set Execute Permissions for AMXX Compiler (Linux Only)
+        run: chmod +x Compiler/*/amxxpc || true
 
       - name: Run Compilation Script
         run: python compile_amxx.py
@@ -32,5 +35,5 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add . || true
+          git add Updates.json Compiled/ || true
           git diff --cached --quiet || (git commit -m "Automated compilation update" && git push)
