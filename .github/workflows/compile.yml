@@ -22,6 +22,9 @@ jobs:
       - name: Install Dependencies
         run: pip install json5
 
+      - name: Set Execute Permissions for AMXX Compiler
+        run: chmod +x Compiler/*/amxxpc
+
       - name: Run Compilation Script
         run: python compile_amxx.py
 
