@@ -26,7 +26,7 @@ jobs:
         run: |
           sudo dpkg --add-architecture i386
           sudo apt-get update
-          sudo apt-get install -y lib32gcc1 libc6:i386
+          sudo apt-get install -y lib32gcc-s1 libc6:i386
 
       - name: Set Execute Permissions for AMXX Compiler
         run: chmod +x Compiler/*/amxxpc || true
