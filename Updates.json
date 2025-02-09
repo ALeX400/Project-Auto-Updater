@@ -3,12 +3,12 @@
         "PluginName": "Report System",
         "Version": "1.6",
         "Author": "Yvezzaint + Edit: @LeX",
-        "Build": "6",
+        "Build": "7",
         "Source": "report_en.sma",
         "Date": "09.02.2025",
         "Download": {
-            "1100": "https://raw.githubusercontent.com/ALeX400/Multi-RSS/refs/heads/main/Compiled/Report_System/1100/report_en.amxx",
-            "190": "https://raw.githubusercontent.com/ALeX400/Multi-RSS/refs/heads/main/Compiled/Report_System/190/report_en.amxx"
+            "1100": "https://raw.githubusercontent.com/ALeX400/Project-Auto-Updater/refs/heads/main/Compiled/Report_System/1100/report_en.amxx",
+            "190": "https://raw.githubusercontent.com/ALeX400/Project-Auto-Updater/refs/heads/main/Compiled/Report_System/190/report_en.amxx"
         }
     }
 }
