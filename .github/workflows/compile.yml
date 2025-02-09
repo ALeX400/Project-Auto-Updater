@@ -31,10 +31,11 @@ jobs:
       - name: Set Execute Permissions for AMXX Compiler
         run: chmod +x Compiler/*/amxxpc || true
 
-      - name: Verify `amxxpc32.so` Library
-        run: |
-          find Compiler -name "amxxpc32.so" || echo "Library not found!"
-          ldd Compiler/*/amxxpc || true
+      - name: Debug Compiler Files
+        run: find Compiler -type f
+
+      - name: Set LD_LIBRARY_PATH for AMXX Compiler
+        run: echo "export LD_LIBRARY_PATH=Compiler/190:Compiler/1100:\$LD_LIBRARY_PATH" >> $GITHUB_ENV
 
       - name: Run Compilation Script
         run: python compile_amxx.py
