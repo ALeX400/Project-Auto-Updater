@@ -1,0 +1,33 @@
+name: Compile AMXX Plugins
+
+on:
+  push:
+    paths:
+      - 'Source/**/*.sma'
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set Up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: pip install json5
+
+      - name: Run Compilation Script
+        run: python compile_amxx.py
+
+      - name: Commit and Push Updates
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add Updates.json Compiled/ || true
+          git diff --cached --quiet || (git commit -m "Automated compilation update" && git push)
