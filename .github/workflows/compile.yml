@@ -23,7 +23,7 @@ jobs:
         run: pip install json5
 
       - name: Install 32-bit Libraries (Required for AMX Mod X Compiler)
-        run: sudo apt-get update && sudo apt-get install -y lib32gcc1 libc6-i386
+        run: sudo apt-get update && sudo apt-get install -y lib32gcc-s1 libc6-i386
 
       - name: Set Execute Permissions for AMXX Compiler (Linux Only)
         run: chmod +x Compiler/*/amxxpc || true
