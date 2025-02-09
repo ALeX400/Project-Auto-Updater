@@ -1,0 +1,1 @@
+native eas_get_player_rank( id, szRank[ ], iSize )
