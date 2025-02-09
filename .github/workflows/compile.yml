@@ -8,7 +8,7 @@ on:
 
 jobs:
   compile:
-    runs-on: windows-latest  # Schimbat de la ubuntu-latest la windows-latest
+    runs-on: windows-latest  # Some Errors on Linux, Use Windows for now
 
     steps:
       - name: Checkout Repository
@@ -25,9 +25,6 @@ jobs:
       - name: Set Execute Permissions for AMXX Compiler (Windows)
         run: |
           chmod +x Compiler/*/amxxpc.exe || echo "Skipping chmod on Windows"
-
-      - name: Debug Compiler Files
-        run: Get-ChildItem -Path Compiler -Recurse | Format-Table -AutoSize
 
       - name: Run Compilation Script
         run: python compile_amxx.py
