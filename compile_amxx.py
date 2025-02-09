@@ -61,68 +61,14 @@ def extract_plugin_info(sma_path):
 
     return plugin_info
 
-#def compile_plugin(source_folder, compiler_folder, compiled_folder, plugin_info, project_name):
-#    """Compile the plugin for each version in Build.json"""
-#    build_json_path = os.path.join(source_folder, "Build.json")
-    
-#    if not os.path.exists(build_json_path):
-#        logging.warning(f"Build.json missing in {source_folder}. Skipping.")
-#        return [], []
-    
-#    with open(build_json_path, "r", encoding="utf-8") as f:
-#        build_config = json5.load(f)
-    
-#    versions = build_config.get("BuildVersions", [])
-#    use_default_include = build_config.get("DefaultIncludeFolder", True)
-#    use_custom_include = build_config.get("CustomIncludeFolder", True)
-
-#    sma_file = plugin_info.get("Source", "")
-#    if not sma_file:
-#        logging.warning(f"No source file defined in {source_folder}. Skipping.")
-#        return [], []
-    
-#    sma_path = os.path.join(source_folder, sma_file)
-#    compiled_project_path = os.path.join(compiled_folder, project_name)
-#    os.makedirs(compiled_project_path, exist_ok=True)
-
-#    successful_versions = []
-#    failed_versions = []
-
-#    for version in versions:
-#        compiler_path = os.path.join(compiler_folder, version)
-#        include_paths = []
-        
-#        if use_default_include:
-#            include_paths.append(os.path.join(compiler_path, "include"))
-#        if use_custom_include:
-#            include_paths.append(os.path.abspath("Custom_Includes"))
-        
-#        version_path = os.path.join(compiled_project_path, version)
-#        os.makedirs(version_path, exist_ok=True)
-        
-#        amxx_output = os.path.join(version_path, sma_file.replace(".sma", ".amxx"))
-#        compiler_exe = os.path.join(compiler_path, "amxxpc")
-        
-#        cmd = [compiler_exe, sma_path, "-o" + amxx_output] + [f"-i{path}" for path in include_paths]
-        
-#        result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-#        if result.returncode == 0:
-#            successful_versions.append(version)
-#        else:
-#            failed_versions.append(version)
-
-#    return successful_versions, failed_versions
-
 def compile_plugin(source_folder, compiler_folder, compiled_folder, plugin_info, project_name):
-    """Compile the plugin for each version in Build.json, supporting both Windows and Linux"""
+    """Compile the plugin for each version in Build.json"""
     build_json_path = os.path.join(source_folder, "Build.json")
     
     if not os.path.exists(build_json_path):
         logging.warning(f"Build.json missing in {source_folder}. Skipping.")
         return [], []
     
-    import json5
     with open(build_json_path, "r", encoding="utf-8") as f:
         build_config = json5.load(f)
     
@@ -142,46 +88,24 @@ def compile_plugin(source_folder, compiler_folder, compiled_folder, plugin_info,
     successful_versions = []
     failed_versions = []
 
-    is_windows = platform.system() == "Windows"
-
     for version in versions:
         compiler_path = os.path.join(compiler_folder, version)
-
-        # Selectează compilatorul corect pentru OS
-        compiler_exe = os.path.join(compiler_path, "amxxpc.exe" if is_windows else "amxxpc")
-
-        if not os.path.isfile(compiler_exe):
-            logging.error(f"Compiler not found: {compiler_exe}. Skipping version {version}.")
-            failed_versions.append(version)
-            continue
-
-        if not is_windows:
-            # Pe Linux, setăm permisiuni de execuție
-            if not os.access(compiler_exe, os.X_OK):
-                logging.info(f"Setting execute permission for {compiler_exe}")
-                os.chmod(compiler_exe, 0o755)
-
         include_paths = []
+        
         if use_default_include:
             include_paths.append(os.path.join(compiler_path, "include"))
         if use_custom_include:
             include_paths.append(os.path.abspath("Custom_Includes"))
-
+        
         version_path = os.path.join(compiled_project_path, version)
         os.makedirs(version_path, exist_ok=True)
         
         amxx_output = os.path.join(version_path, sma_file.replace(".sma", ".amxx"))
-
+        compiler_exe = os.path.join(compiler_path, "amxxpc")
+        
         cmd = [compiler_exe, sma_path, "-o" + amxx_output] + [f"-i{path}" for path in include_paths]
-
-        logging.info(f"Compiling '{project_name}' for AMX Mod X {version} using: {' '.join(cmd)}")
-
-        result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-
-        if result.stdout:
-            logging.info(f"Compiler output (stdout) for {project_name} {version}:\n{result.stdout}")
-        if result.stderr:
-            logging.error(f"Compiler output (stderr) for {project_name} {version}:\n{result.stderr}")
+        
+        result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
         if result.returncode == 0:
             successful_versions.append(version)
@@ -226,7 +150,7 @@ if __name__ == "__main__":
     COMPILER_DIR = "Compiler"
     COMPILED_DIR = "Compiled"
     UPDATES_FILE = "Updates.json"
-    REPO_URL = "https://github.com/ALeX400/Multi-RSS"
+    REPO_URL = "https://github.com/ALeX400/Project-Auto-Updater"
     
     GITHUB_RAW_URL = REPO_URL.replace("github.com", "raw.githubusercontent.com") + "/refs/heads/main"
 
