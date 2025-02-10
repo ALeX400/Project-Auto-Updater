@@ -3,12 +3,23 @@
         "PluginName": "Report System",
         "Version": "1.6",
         "Author": "Yvezzaint + Edit: @LeX",
-        "Build": "8",
+        "Build": "9",
         "Source": "report_en.sma",
-        "Date": "09.02.2025",
+        "Date": "10.02.2025",
         "Download": {
             "1100": "https://raw.githubusercontent.com/ALeX400/Project-Auto-Updater/refs/heads/main/Compiled/Report_System/1100/report_en.amxx",
             "190": "https://raw.githubusercontent.com/ALeX400/Project-Auto-Updater/refs/heads/main/Compiled/Report_System/190/report_en.amxx"
+        }
+    },
+    "Test_Auto_Updater": {
+        "PluginName": "Auto Updater",
+        "Version": "1.0",
+        "Author": "@LeX",
+        "Build": "1",
+        "Source": "TestAutoUpdater.sma",
+        "Date": "10.02.2025",
+        "Download": {
+            "190": "https://raw.githubusercontent.com/ALeX400/Project-Auto-Updater/refs/heads/main/Compiled/Test_Auto_Updater/190/TestAutoUpdater.amxx"
         }
     }
 }
