@@ -6,7 +6,7 @@
 #define PLUGIN_FOLDER "addons/amxmodx/plugins/"
 
 new const PluginName[] = "Test Auto Updater";
-new const PluginVersion[] = "1.0";
+new const PluginVersion[] = "1.1";
 new const PluginAuthor[] = "@LeX";
 
 public plugin_init()
