@@ -6,13 +6,13 @@
 #define PLUGIN_NAME "Auto_Updater"
 #define PLUGIN_FOLDER "addons/amxmodx/plugins/"
 
-new const	PluginName[] = "Auto Updater",
+new const	PluginName[] = "Test Auto Updater",
 			PluginVersion[] = "1.0",
 			PluginAuthor[] = "@LeX";
 
 public plugin_init()
 {
-	register_plugin(PluginInfo[0], PluginInfo[1], PluginInfo[2]);
+	register_plugin(PluginName, PluginVersion, PluginAuthor);
 	
 	// Verifică update-ul la încărcarea pluginului
 	set_task(5.0, "CheckForUpdates");
