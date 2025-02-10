@@ -34,4 +34,4 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add Updates.json Compiled/ || echo "No changes to commit"
-          git diff --cached --quiet || (git commit -S -m "Automated compilation update" && git push)
+          git diff --cached --quiet || (git commit -m "Automated compilation update" && git push)
