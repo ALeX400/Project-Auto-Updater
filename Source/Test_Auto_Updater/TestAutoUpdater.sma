@@ -3,12 +3,11 @@
 #include <amxmisc>
 
 #define UPDATE_JSON_URL "https://raw.githubusercontent.com/ALeX400/Project-Auto-Updater/refs/heads/main/Updates.json"
-#define PLUGIN_NAME "Auto_Updater"
 #define PLUGIN_FOLDER "addons/amxmodx/plugins/"
 
-new const	PluginName[] = "Test Auto Updater",
-			PluginVersion[] = "1.0",
-			PluginAuthor[] = "@LeX";
+new const PluginName[] = "Test Auto Updater";
+new const PluginVersion[] = "1.0";
+new const PluginAuthor[] = "@LeX";
 
 public plugin_init()
 {
@@ -47,22 +46,55 @@ public OnUpdateCheckComplete(EzHttpRequest:request_id)
 		return;
 	}
 
-	if (!ezjson_object_has_value(json, PLUGIN_NAME, EzJSONObject))
+	new plugin_key[64], found = 0;
+	new json_plugin_name[64];
+
+	// Caută pluginul în JSON pe baza `PluginName`
+	new total_plugins = ezjson_object_get_count(json);
+	for (new i = 0; i < total_plugins; i++)
 	{
-		log_amx("[AutoUpdater] Plugin '%s' not found in JSON.", PLUGIN_NAME);
-		ezjson_free(json);
+		ezjson_object_get_name(json, i, plugin_key, charsmax(plugin_key));
+		new EzJSON:pluginData = ezjson_object_get_value(json, plugin_key);
+		
+		if (ezjson_object_has_value(pluginData, "PluginName", EzJSONString))
+		{
+			ezjson_object_get_string(pluginData, "PluginName", json_plugin_name, charsmax(json_plugin_name));
+			
+			if (equal(json_plugin_name, PluginName))
+			{
+				found = 1;
+				ProcessPluginUpdate(pluginData);
+				break;
+			}
+		}
+		ezjson_free(pluginData);
+	}
+
+	ezjson_free(json);
+
+	if (!found)
+	{
+		log_amx("[AutoUpdater] Plugin '%s' not found in update JSON.", PluginName);
+	}
+}
+
+public ProcessPluginUpdate(EzJSON:pluginData)
+{
+	new json_version[32], json_download_url[256];
+	ezjson_object_get_string(pluginData, "Version", json_version, charsmax(json_version));
+
+	new json_numeric_version = GetVersionAsNumber(json_version);
+	new current_plugin_version = GetVersionAsNumber(PluginVersion);
+
+	if (json_numeric_version <= current_plugin_version)
+	{
+		log_amx("[AutoUpdater] No update available. Running latest version (%s).", PluginVersion);
 		return;
 	}
 
-	new EzJSON:pluginData = ezjson_object_get_value(json, PLUGIN_NAME);
-	new json_version[32];
-	ezjson_object_get_string(pluginData, "Version", json_version, charsmax(json_version));
-
-	new json_download_url[256];
-	//new current_version[32] = AMXX_VERSION_STR;
 	new version_code = GetVersionAsNumber(AMXX_VERSION_STR);
 	
-	// Construim cheia JSON pentru versiune
+	// Construim cheia JSON pentru versiune AMX Mod X
 	new version_key[8];
 	format(version_key, charsmax(version_key), "%d", version_code);
 
@@ -73,25 +105,11 @@ public OnUpdateCheckComplete(EzHttpRequest:request_id)
 	else
 	{
 		log_amx("[AutoUpdater] No matching version found in JSON for AMX Mod X %s", AMXX_VERSION_STR);
-		ezjson_free(pluginData);
-		ezjson_free(json);
 		return;
 	}
 
-	ezjson_free(pluginData);
-	ezjson_free(json);
-
-	new json_numeric_version = GetVersionAsNumber(json_version);
-
-	if (json_numeric_version > version_code)
-	{
-		log_amx("[AutoUpdater] Found new version %s (current: %s). Starting download...", json_version, AMXX_VERSION_STR);
-		DownloadNewVersion(json_download_url);
-	}
-	else
-	{
-		log_amx("[AutoUpdater] No update available. Running latest version.");
-	}
+	log_amx("[AutoUpdater] Found new plugin version %s (current: %s). Starting download...", json_version, PluginVersion);
+	DownloadNewVersion(json_download_url);
 }
 
 public DownloadNewVersion(const json_download_url[])
