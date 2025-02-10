@@ -20,7 +20,7 @@ public plugin_init()
 
 public CheckForUpdates()
 {
-	EzHttpOptions:options = ezhttp_create_options();
+	new EzHttpOptions:options = ezhttp_create_options();
 	ezhttp_option_set_timeout(options, 10000); // Timeout de 10 secunde
 	
 	ezhttp_get(UPDATE_JSON_URL, "OnUpdateCheckComplete", options);
@@ -40,7 +40,7 @@ public OnUpdateCheckComplete(EzHttpRequest:request_id)
 		return;
 	}
 
-	EzJSON:json = ezhttp_parse_json_response(request_id, false);
+	new EzJSON:json = ezhttp_parse_json_response(request_id, false);
 	if (json == EzInvalid_JSON)
 	{
 		log_amx("[AutoUpdater] Invalid JSON format.");
@@ -54,7 +54,7 @@ public OnUpdateCheckComplete(EzHttpRequest:request_id)
 		return;
 	}
 
-	EzJSON:pluginData = ezjson_object_get_value(json, PLUGIN_NAME);
+	new EzJSON:pluginData = ezjson_object_get_value(json, PLUGIN_NAME);
 	new json_version[32];
 	ezjson_object_get_string(pluginData, "Version", json_version, charsmax(json_version));
 
@@ -106,7 +106,7 @@ public DownloadNewVersion(const json_download_url[])
 	BackupOldPlugin(save_path);
 	log_amx("[AutoUpdater] Downloading from: %s", json_download_url);
 
-	EzHttpOptions:options = ezhttp_create_options();
+	new EzHttpOptions:options = ezhttp_create_options();
 	ezhttp_option_set_timeout(options, 5000);
 	
 	ezhttp_get(json_download_url, "OnPluginDownloadComplete", options);
