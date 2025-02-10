@@ -13,7 +13,7 @@
     },
     "Test_Auto_Updater": {
         "PluginName": "Test Auto Updater",
-        "Version": "1.0",
+        "Version": "1.1",
         "Author": "@LeX",
         "Build": "4",
         "Source": "TestAutoUpdater.sma",
