@@ -1,5 +1,5 @@
 {
-	"DefaultIncludeFolder": true,
-	"CustomIncludeFolder": true,
-	"BuildVersions": [ "190" ]
+	"DefaultIncludeFolder": true,// based on versions of Amxmodx through which we will compile it, example for 190 "/compiler/190/iclude" (versions will be taken from Buildversions)
+	"CustomIncludeFolder": true, // is default in the location "/Custom_includes" if it is TRUE, if it is fake then the location from "defaultcludefolder" will be used
+	"BuildVersions": [ "190", "1100"] // versions of amxmodx through which the plugin will be compiled
 }
