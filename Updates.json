@@ -3,7 +3,7 @@
         "PluginName": "Report System",
         "Version": "1.6",
         "Author": "Yvezzaint + Edit: @LeX",
-        "Build": "11",
+        "Build": "12",
         "Source": "report_en.sma",
         "Date": "10.02.2025",
         "Download": {
@@ -13,9 +13,9 @@
     },
     "Test_Auto_Updater": {
         "PluginName": "Test Auto Updater",
-        "Version": "1.1",
+        "Version": "1.0",
         "Author": "@LeX",
-        "Build": "3",
+        "Build": "4",
         "Source": "TestAutoUpdater.sma",
         "Date": "10.02.2025",
         "Download": {
