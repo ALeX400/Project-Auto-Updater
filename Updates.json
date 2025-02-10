@@ -3,7 +3,7 @@
 		"PluginName": "Report System",
 		"Version": "1.6",
 		"Author": "Yvezzaint + Edit: @LeX",
-		"Build": "43",
+		"Build": "44",
 		"SMA": "report_en.sma",
 		"AMXX": "report_en.amxx",
 		"Date": "10.02.2025",
@@ -16,13 +16,26 @@
 		"PluginName": "Test Auto Updater",
 		"Version": "1.1",
 		"Author": "@LeX",
-		"Build": "40",
+		"Build": "41",
 		"SMA": "TestAutoUpdater.sma",
 		"AMXX": "TestAutoUpdater.amxx",
 		"Date": "10.02.2025",
 		"Download": {
 			"1100": "https://raw.githubusercontent.com/ALeX400/Project-Auto-Updater/refs/heads/main/Compiled/Test_Auto_Updater/1100/TestAutoUpdater.amxx",
 			"190": "https://raw.githubusercontent.com/ALeX400/Project-Auto-Updater/refs/heads/main/Compiled/Test_Auto_Updater/190/TestAutoUpdater.amxx"
+		}
+	},
+	"Test_Auto_Updater2": {
+		"PluginName": "Test Auto Updater",
+		"Version": "1.1",
+		"Author": "@LeX",
+		"Build": "1",
+		"SMA": "TestAutoUpdater.sma",
+		"AMXX": "TestAutoUpdater.amxx",
+		"Date": "10.02.2025",
+		"Download": {
+			"1100": "https://raw.githubusercontent.com/ALeX400/Project-Auto-Updater/refs/heads/main/Compiled/Test_Auto_Updater2/1100/TestAutoUpdater.amxx",
+			"190": "https://raw.githubusercontent.com/ALeX400/Project-Auto-Updater/refs/heads/main/Compiled/Test_Auto_Updater2/190/TestAutoUpdater.amxx"
 		}
 	}
 }
