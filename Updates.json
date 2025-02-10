@@ -1,25 +1,28 @@
 {
-    "Report_System": {
-        "PluginName": "Report System",
-        "Version": "1.6",
-        "Author": "Yvezzaint + Edit: @LeX",
-        "Build": "12",
-        "Source": "report_en.sma",
-        "Date": "10.02.2025",
-        "Download": {
-            "1100": "https://raw.githubusercontent.com/ALeX400/Project-Auto-Updater/refs/heads/main/Compiled/Report_System/1100/report_en.amxx",
-            "190": "https://raw.githubusercontent.com/ALeX400/Project-Auto-Updater/refs/heads/main/Compiled/Report_System/190/report_en.amxx"
-        }
-    },
-    "Test_Auto_Updater": {
-        "PluginName": "Test Auto Updater",
-        "Version": "1.1",
-        "Author": "@LeX",
-        "Build": "4",
-        "Source": "TestAutoUpdater.sma",
-        "Date": "10.02.2025",
-        "Download": {
-            "190": "https://raw.githubusercontent.com/ALeX400/Project-Auto-Updater/refs/heads/main/Compiled/Test_Auto_Updater/190/TestAutoUpdater.amxx"
-        }
-    }
+	"Report_System": {
+		"PluginName": "Report System",
+		"Version": "1.6",
+		"Author": "Yvezzaint + Edit: @LeX",
+		"Build": "41",
+		"SMA": "report_en.sma",
+		"AMXX": "report_en.amxx",
+		"Date": "10.02.2025",
+		"Download": {
+			"1100": "https://raw.githubusercontent.com/ALeX400/Project-Auto-Updater/refs/heads/main/Compiled/Report_System/1100/report_en.amxx",
+			"190": "https://raw.githubusercontent.com/ALeX400/Project-Auto-Updater/refs/heads/main/Compiled/Report_System/190/report_en.amxx"
+		}
+	},
+	"Test_Auto_Updater": {
+		"PluginName": "Test Auto Updater",
+		"Version": "1.0",
+		"Author": "@LeX",
+		"Build": "38",
+		"SMA": "TestAutoUpdater.sma",
+		"AMXX": "TestAutoUpdater.amxx",
+		"Date": "10.02.2025",
+		"Download": {
+			"1100": "https://raw.githubusercontent.com/ALeX400/Project-Auto-Updater/refs/heads/main/Compiled/Test_Auto_Updater/1100/TestAutoUpdater.amxx",
+			"190": "https://raw.githubusercontent.com/ALeX400/Project-Auto-Updater/refs/heads/main/Compiled/Test_Auto_Updater/190/TestAutoUpdater.amxx"
+		}
+	}
 }
