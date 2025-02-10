@@ -3,7 +3,7 @@
 		"PluginName": "Report System",
 		"Version": "1.6",
 		"Author": "Yvezzaint + Edit: @LeX",
-		"Build": "44",
+		"Build": "45",
 		"SMA": "report_en.sma",
 		"AMXX": "report_en.amxx",
 		"Date": "10.02.2025",
@@ -13,10 +13,10 @@
 		}
 	},
 	"Test_Auto_Updater": {
-		"PluginName": "Test Auto Updater",
+		"PluginName": "Auto Updater",
 		"Version": "1.1",
 		"Author": "@LeX",
-		"Build": "41",
+		"Build": "42",
 		"SMA": "TestAutoUpdater.sma",
 		"AMXX": "TestAutoUpdater.amxx",
 		"Date": "10.02.2025",
