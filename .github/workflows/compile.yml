@@ -9,6 +9,8 @@ on:
 jobs:
   compile:
     runs-on: windows-latest
+    env:
+      GITHUB_RAW_URL: "https://raw.githubusercontent.com/${{ github.repository }}/refs/heads/main"
 
     steps:
       - name: Checkout Repository
