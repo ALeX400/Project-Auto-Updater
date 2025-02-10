@@ -189,9 +189,10 @@ def update_json(updates_file, project_name, compiled_folder, repo_url, plugin_in
 
 if __name__ == "__main__":
     SOURCE_DIR, COMPILER_DIR, COMPILED_DIR, UPDATES_FILE = "Source", "Compiler", "Compiled", "Updates.json"
-    REPO_URL = "https://github.com/ALeX400/Project-Auto-Updater"
-    GITHUB_RAW_URL = REPO_URL.replace("github.com", "raw.githubusercontent.com") + "/refs/heads/main"
-
+    #REPO_URL = "https://github.com/ALeX400/Project-Auto-Updater"
+    #REPO_URL =  os.getenv("GITHUB_RAW_URL")
+    #GITHUB_RAW_URL = REPO_URL.replace("github.com", "raw.githubusercontent.com") + "/refs/heads/main"
+    GITHUB_RAW_URL = os.getenv("GITHUB_RAW_URL")
 
     SendLog.info("Starting compilation process...", "%(asctime)s [%(levelname)s] %(message)s\n")
     project_count = 0
