@@ -7,7 +7,7 @@
 #define CONFIG_FILE "addons/amxmodx/configs/auto_updater.ini"
 
 new const	PluginName[] = "Auto Updater",
-			PluginVersion[] = "1.0",
+			PluginVersion[] = "1.1",
 			PluginAuthor[] = "@LeX";
 
 public plugin_init()
